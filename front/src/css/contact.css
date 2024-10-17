@@ -1,0 +1,24 @@
+.contact-page {
+    text-align: center;
+  }
+  
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .contact-detail {
+    margin: 0 20px;
+  }
+  
+  .contact-detail h2 {
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .contact-detail p {
+    font-size: 16px;
+    color: #555;
+  }
+  

@@ -1,0 +1,29 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    background-color: #dbe4d7be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login .layout {
+    max-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-inline: 80px;
+    border-radius: 20px;
+}
+
+.form {
+    background-color: #cedbc6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}

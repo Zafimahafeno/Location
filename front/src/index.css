@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Poppins", sans-serif;
+}
+
+.accueil{
+  height: 110vh;
+  width: 100%;
+  background-image: url(./assets/chat3.webp);
+  /* background-color: #0f0f0f; */
+
+  
+  
+  background-position:center ;
+  /* background: linear-gradient(135deg, #181818, #2c2c2c); */
+  /* background-size: cover; */
+  background-size: 100% 100%  ;
+  background-position-x:right;
+  background-repeat: no-repeat;
+  /* color: black; */
+  
+}
+.content{
+  
+  /* background: linear-gradient(#e66465, #9198e5); */
+  background: linear-gradient(0.35turn, #4f4c44, rgb(116,112,102), #f11313);
+
+  height: 100vh;
+  overflow-y: auto;
+}
+.layout{
+  background-color:#f5f1f1 ;
+  /* background-color: #d1d4d7 ; */
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: start;
+}

@@ -1,0 +1,123 @@
+.panier{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    padding: 20px;
+    flex: 1;
+    gap: 10px;
+  
+}
+.panier tr {
+    position: relative;
+    
+}
+.panier tr .icon{
+    color: #ff0808;
+    font-size: 25px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+.panierLeft{
+    width: 98%;
+}
+.panierRight{
+    width: 30%;
+    position: sticky;
+    top: 13.5%;
+   
+}
+.panierCard{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    width: 100%;
+    min-height: 100px;
+    background-color: #dbd1c2
+
+    ;
+    border-radius: 20px;
+}
+.panierCard table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .panierCard th, .panierCard td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  .panierCard .border{
+    border-bottom: 1px solid #00000046;
+  }
+  
+  .panierCard th:first-child, .panierCard td:first-child {
+    width: 50%;
+  }
+  .panier .produit{
+    display: flex;
+    flex-direction: row;
+  }
+  .panier img {
+    width: 100px; 
+    height: 110px; 
+    border-radius: 10px;
+}
+.panier td.prix{
+    font-weight: 600;
+    font-size: 22px;
+}
+  
+  .panier .detail {
+    margin-left: 10px;
+display: flex;
+flex-direction: column;
+  }
+  .panier .detail:first-child{
+    font-weight: 700;
+    font-size: larger;
+  }
+  .panier .quantite {
+    display: flex;
+  }
+  
+  .panier .quantite .btn {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #F7BA00;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: larger;
+    cursor: pointer;
+  }
+  
+  .panier .quantite .btn:hover {
+    background-color: #000000;
+    color: #F7BA00;
+  }
+  
+  .panier .nbQuante {
+    padding: 5px 10px;
+    font-weight: 700;
+  }
+  .detail div:nth-child(1){
+    color: #000;
+    font-weight: lighter;
+  }
+  .detail div:nth-child(2){
+    color: #000000;
+    font-size: x-large;
+    font-weight: bold;
+  }
+  .total{
+    padding: 20px;
+    
+  }

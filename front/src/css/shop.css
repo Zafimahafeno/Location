@@ -1,0 +1,113 @@
+.card {
+    height: 400px;
+    width: 22%;
+    margin-block: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: #00000059 0px 5px 15px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: #ce0202 0px 5px 15px;
+}
+
+.card img {
+    height: 50%;
+    width: 96%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 6px;
+    margin-left: 2%;
+    box-shadow: #00000029 0px 1px 4px;
+}
+
+.card .contain {
+    height: 50%;
+    width: 100%;
+    padding-inline: 10px;
+}
+
+.card button {
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+    left: 10%;
+    font-size: 16px !important;
+}
+
+.card .marque {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background-color: #000;
+    color: #f7b900e8;
+    padding-inline: 15px;
+    padding-block: 6px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.card .nom {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.card .detail {
+    font-size: small;
+    font-weight: 600;
+    width: 96%;
+}
+
+.card .prix {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.card .footer {
+    width: 94%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.no-products{
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+.card .quantite {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.card .btn {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #F7BA00;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #000000;
+    color: #F7BA00;
+}
+ 
+  
