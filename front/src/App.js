@@ -132,7 +132,7 @@ function App() {
     },
 
     {
-      path: "/dashboard",
+      path: "/admin/dashboard",
       Component: Dashboard,
     },
     

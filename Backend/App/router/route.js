@@ -18,7 +18,7 @@ const { getdetails_commande, createdetails_commande, deletedetails_commande, upd
 const { getCommande, getOneCommande, createCommande, deleteCommande, updateCommande, livrerCommande } = require('../controller/commandesCtrl');
 const { getAllProduitEntree, getOneProduitEntree, createProduitEntree, deleteProduitEntree, updateProduitEntree } = require('../controller/entreeCtrl');
 const { getPacks, getOnePack, createPack, deletePack, updatePack } = require('../controller/packCtrl');
-const { getTotalUsers, getTotalProducts, getTotalOrders } = require('../controller/statsCtrl');
+const { getDashboardStats  } = require('../controller/dashboardCtrl');
 
 router.get('/produit', getProduit);
 router.get('/produit/:id', getOneProduit);
@@ -78,9 +78,11 @@ router.post('/entree', createProduitEntree);
 router.delete('/entree/:id', deleteProduitEntree);
 router.put('/entree/:id', updateProduitEntree);
 
-router.get('/stats/users', getTotalUsers);     // Total des utilisateurs
-router.get('/stats/products', getTotalProducts); // Total des produits
-router.get('/stats/orders', getTotalOrders);    // Total des commandes
+// router.get('/dashboard/users', getTotalUsers);
+// router.get('/dashboard/products', getTotalProducts); 
+// router.get('/dashboard/orders', getTotalOrders);    
+
+router.get('/dashboard/stats', getDashboardStats);
 
 // Ajouter les routes pour les packs
 router.get('/packs', getPacks);               // Récupérer tous les packs
