@@ -26,9 +26,18 @@ const Dashboard = () => {
     <LayoutAdmin>
     
     <div className="dashboard">
-      <div className="stat-card ">Total utilisateurs: {stats.totalUtilisateurs}</div>
-      <div className="stat-card ">Total produits: {stats.totalProduits}</div>
-      <div className="stat-card ">Total commandes: {stats.totalCommandes}</div>
+      <div className="stat-card1 ">
+        <h3>Total d'utilisateurs</h3> 
+        <p>{stats.totalUtilisateurs} </p>
+        </div>
+      <div className="stat-card2 ">
+      <h3>Total produits</h3> 
+      <p> {stats.totalProduits} </p>
+      </div>
+      <div className="stat-card3 ">
+      <h3> Total commandes</h3>
+      <p> {stats.totalCommandes} </p>
+      </div>
     </div>
     </LayoutAdmin>
        
