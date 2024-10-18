@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdDashboard } from "react-icons/md";
 import { FaProductHunt,FaUsers } from "react-icons/fa6";
+import { LuPackagePlus } from "react-icons/lu";
   
 
 
@@ -11,6 +12,7 @@ const SidebarAdmin = () => {
     
     {link:'/admin/dashboard', title:'Tableau de bord', icon:<MdDashboard size={30}  />},
     {link:'/admin/produit', title:'Tous les produits', icon:<FaProductHunt size={30} />},
+    {link:'/admin/pack', title:'   Packs produits', icon:<LuPackagePlus  size={30} />},
     {link:'/admin/client', title:'Client',icon:<FaUsers size={30} />},
   ]
   return (

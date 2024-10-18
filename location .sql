@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 17 oct. 2024 à 09:48
+-- Généré le : ven. 18 oct. 2024 à 20:43
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -62,28 +62,6 @@ INSERT INTO `categorie` (`ID_categorie`, `Nom_categorie`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `client`
---
-
-CREATE TABLE `client` (
-  `idC` int(11) NOT NULL,
-  `cli` varchar(50) NOT NULL,
-  `cont` varchar(10) NOT NULL,
-  `cin` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `client`
---
-
-INSERT INTO `client` (`idC`, `cli`, `cont`, `cin`) VALUES
-(42, 'Natha', '0388964317', '216547895220'),
-(43, 'Lilie', '0345269871', '205011027921'),
-
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `commande`
 --
 
@@ -118,6 +96,30 @@ CREATE TABLE `commandes` (
   `Etat_commande` varchar(50) DEFAULT NULL,
   `type_commande` enum('pack','produit') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comptes`
+--
+
+CREATE TABLE `comptes` (
+  `ID_comptes` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
+  `profil` varchar(255) NOT NULL DEFAULT 'avatar.png',
+  `password` varchar(20) NOT NULL,
+  `role` varchar(20) NOT NULL DEFAULT 'client',
+  `ID_utilisateur` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `comptes`
+--
+
+INSERT INTO `comptes` (`ID_comptes`, `email`, `pseudo`, `profil`, `password`, `role`, `ID_utilisateur`) VALUES
+(2, 'nathalie@gmail.com', 'Nathalie', 'avatar.png', '1234578', 'client', 4),
+(4, 'nathalientsu@gmail.com', 'Natha', 'avatar.png', '1234578', 'admin', 9);
 
 -- --------------------------------------------------------
 
@@ -353,33 +355,10 @@ INSERT INTO `produit_sortie` (`id_sortie`, `id_produit`, `quantite_sortie`, `dat
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Structure de la table `utilisateurs_details`
 --
 
-CREATE TABLE `users` (
-  `idUser` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `pseudo` varchar(255) NOT NULL,
-  `profil` varchar(255) NOT NULL DEFAULT 'avatar.png',
-  `password` varchar(20) NOT NULL,
-  `role` varchar(20) NOT NULL DEFAULT 'client'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`idUser`, `email`, `pseudo`, `profil`, `password`, `role`) VALUES
-(2, 'nathalie@gmail.com', 'Nathalie', 'avatar.png', '1234578', 'client'),
-(4, 'nathalientsu@gmail.com', 'Natha', 'avatar.png', '1234578', 'admin');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateurs`
---
-
-CREATE TABLE `utilisateurs` (
+CREATE TABLE `utilisateurs_details` (
   `ID_utilisateur` int(11) NOT NULL,
   `Nom` varchar(50) DEFAULT NULL,
   `Prenom` varchar(50) DEFAULT NULL,
@@ -387,15 +366,20 @@ CREATE TABLE `utilisateurs` (
   `phone` varchar(12) NOT NULL,
   `Mot_de_passe` varchar(100) DEFAULT NULL,
   `Adresse_livraison` varchar(255) DEFAULT NULL,
-  `Adresse_facturation` varchar(255) DEFAULT NULL
+  `Adresse_facturation` varchar(255) DEFAULT NULL,
+  `cin` varchar(12) DEFAULT NULL,
+  `cont` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `utilisateurs`
+-- Déchargement des données de la table `utilisateurs_details`
 --
 
-INSERT INTO `utilisateurs` (`ID_utilisateur`, `Nom`, `Prenom`, `Adresse_email`, `phone`, `Mot_de_passe`, `Adresse_livraison`, `Adresse_facturation`) VALUES
-(4, 'Nathalie', 'Ntsu', 'nathalie@gmail.com', '0345678456', '1234578', 'Imandry', 'Imandry');
+INSERT INTO `utilisateurs_details` (`ID_utilisateur`, `Nom`, `Prenom`, `Adresse_email`, `phone`, `Mot_de_passe`, `Adresse_livraison`, `Adresse_facturation`, `cin`, `cont`) VALUES
+(4, 'Nathalie', 'Ntsu', 'nathalie@gmail.com', '0345678456', '1234578', 'Imandry', 'Imandry', NULL, NULL),
+(7, 'baby', 'tillie', 'baby@gmail.com', '0342908899', '00000', 'Ampandrana', NULL, NULL, NULL),
+(8, 'Nathalie', '', 'nathalie@gmail.com', '', NULL, NULL, NULL, NULL, NULL),
+(9, 'Natha', '', 'nathalientsu@gmail.com', '', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -416,12 +400,6 @@ ALTER TABLE `categorie`
   ADD PRIMARY KEY (`ID_categorie`);
 
 --
--- Index pour la table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`idC`);
-
---
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
@@ -433,6 +411,15 @@ ALTER TABLE `commande`
 ALTER TABLE `commandes`
   ADD PRIMARY KEY (`ID_commande`),
   ADD KEY `ID_utilisateur` (`ID_utilisateur`);
+
+--
+-- Index pour la table `comptes`
+--
+ALTER TABLE `comptes`
+  ADD PRIMARY KEY (`ID_comptes`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `pseudo` (`pseudo`),
+  ADD KEY `FK_users_utilisateurs` (`ID_utilisateur`);
 
 --
 -- Index pour la table `details_commande`
@@ -498,15 +485,9 @@ ALTER TABLE `produit_sortie`
   ADD PRIMARY KEY (`id_sortie`);
 
 --
--- Index pour la table `users`
+-- Index pour la table `utilisateurs_details`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUser`);
-
---
--- Index pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
+ALTER TABLE `utilisateurs_details`
   ADD PRIMARY KEY (`ID_utilisateur`);
 
 --
@@ -526,12 +507,6 @@ ALTER TABLE `categorie`
   MODIFY `ID_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `client`
---
-ALTER TABLE `client`
-  MODIFY `idC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
@@ -542,6 +517,12 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `commandes`
   MODIFY `ID_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT pour la table `comptes`
+--
+ALTER TABLE `comptes`
+  MODIFY `ID_comptes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `details_commande`
@@ -598,16 +579,10 @@ ALTER TABLE `produit_sortie`
   MODIFY `id_sortie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT pour la table `utilisateurs_details`
 --
-ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  MODIFY `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `utilisateurs_details`
+  MODIFY `ID_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Contraintes pour les tables déchargées
@@ -617,14 +592,20 @@ ALTER TABLE `utilisateurs`
 -- Contraintes pour la table `avis_produits`
 --
 ALTER TABLE `avis_produits`
-  ADD CONSTRAINT `avis_produits_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs` (`ID_utilisateur`) ON DELETE CASCADE,
+  ADD CONSTRAINT `avis_produits_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs_details` (`ID_utilisateur`) ON DELETE CASCADE,
   ADD CONSTRAINT `avis_produits_ibfk_2` FOREIGN KEY (`ID_produit`) REFERENCES `produits` (`ID_produit`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `commandes`
 --
 ALTER TABLE `commandes`
-  ADD CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs` (`ID_utilisateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs_details` (`ID_utilisateur`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `comptes`
+--
+ALTER TABLE `comptes`
+  ADD CONSTRAINT `FK_users_utilisateurs` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs_details` (`ID_utilisateur`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `details_commande`
@@ -637,13 +618,13 @@ ALTER TABLE `details_commande`
 -- Contraintes pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs` (`ID_utilisateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs_details` (`ID_utilisateur`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs` (`ID_utilisateur`) ON DELETE CASCADE,
+  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`ID_utilisateur`) REFERENCES `utilisateurs_details` (`ID_utilisateur`) ON DELETE CASCADE,
   ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`ID_produit`) REFERENCES `produits` (`ID_produit`) ON DELETE CASCADE;
 
 --

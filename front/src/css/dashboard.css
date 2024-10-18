@@ -7,7 +7,6 @@
   .stat-card1 {
     width: 25%;
     height: 25%;
-    /* background-color: #f7f7f7; */
     background: linear-gradient(0.45turn, #065eb1, rgb(9, 84, 170), #138df1);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -16,7 +15,6 @@
   .stat-card2 {
     width: 25%;
     height: 25%;
-    /* background-color: #f7f7f7; */
     background: linear-gradient(0.25turn, #09e639, rgb(73, 190, 43), #05e03c);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,10 +23,10 @@
   .stat-card3 {
     width: 25%;
     height: 25%;
-    background-color: #f7f7f7;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    background: linear-gradient(0.45turn, #ab50cf, rgb(198, 33, 204), #5d0aa1);
     
     
   }
