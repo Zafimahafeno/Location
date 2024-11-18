@@ -107,38 +107,40 @@ const secretKey = "8572c14c4e1a07758759c66fd3d40a304ffd47ce8682c5cbc8857ea172edd
 // Fonction pour récupérer toutes les données d'une route donnée
 const getAll = async (route) => {
   try {
-    const response = await fetch(`${Url+route}`);
+    const response = await fetch(`${Url + route}`);
     if (!response.ok) {
-      throw new Error('Erreur lors de la récupération des données');
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Erreur lors de la récupération des données');
     }
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error('Erreur getAll:', error);
+    console.error('Erreur getAll:', error.message || error);
     throw error;
   }
 };
 
 // Fonction pour créer une nouvelle entrée dans une route donnée
-const create = async (route, newData) => {
+const create = async (route, newData, isFormData = false) => {
   try {
-    const response = await fetch(`${Url+route}`, {
+    const response = await fetch(`${Url + route}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newData),
+      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      body: isFormData ? newData : JSON.stringify(newData),
     });
+
     if (!response.ok) {
-      throw new Error('Erreur lors de la création des données');
+      const errorData = await response.json(); // Détails de l'erreur depuis le serveur
+      throw new Error(errorData.error || 'Erreur lors de la création des données');
     }
-    const responseData = await response.json();
-    return responseData;
+    
+    return await response.json();
   } catch (error) {
-    console.error('Erreur create:', error);
+    console.error('Erreur create:', error.message || error);
     throw error;
   }
 };
+
+
 
 // Fonction pour supprimer une entrée
 const deleteDB = async (route) => {

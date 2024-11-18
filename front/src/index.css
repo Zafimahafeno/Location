@@ -31,7 +31,7 @@ code {
 .content{
   
   /* background: linear-gradient(#e66465, #9198e5); */
-  background: linear-gradient(0.35turn, #4f4c44, rgb(116,112,102), #f11313);
+  background: linear-gradient(0.35turn, #e8edee, rgb(235, 247, 246), #ebf1f1);
 
   height: 100vh;
   overflow-y: auto;

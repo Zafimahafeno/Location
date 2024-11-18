@@ -44,10 +44,10 @@ const AuthForm = () => {
                 <Components.SignUpContainer signinIn={signIn}>
                     <div className='form'>
                         <Components.Title>Cree un compte</Components.Title>
-                        <Components.Input type='text' placeholder='Name' />
+                        <Components.Input type='text' placeholder='Nom' />
                         <Components.Input type='email' placeholder='Email' />
                         <Components.Input type='adress' placeholder='Adresse' />
-                        <Components.Input type='password' placeholder='Password' />
+                        <Components.Input type='password' placeholder='Mot de passe' />
                         <button type='submit' className='btnLeft' onClick={() => toggle(true)}>
                             Se connecter
                         </button>
@@ -58,7 +58,7 @@ const AuthForm = () => {
                     <div className='form'>
                         <Components.Title>Se connecter</Components.Title>
                         <Components.Input type='email' placeholder='Email' name='email' value={input.email} onChange={handleInputChange} />
-                        <Components.Input type='password' placeholder='Password' name='password' value={input.password} onChange={handleInputChange} />
+                        <Components.Input type='password' placeholder='Mot de passe' name='mot_de_passe' value={input.mot_de_passe} onChange={handleInputChange} />
                         <Components.Anchor href='#'>Mot de passe oublie?</Components.Anchor>
                         <button type='submit' className='btnLeft' onClick={handleLogin}>
                             Se connecter
@@ -81,10 +81,10 @@ const AuthForm = () => {
                         <Components.RightOverlayPanel signinIn={signIn}>
                             <Components.Title>Bonjour!</Components.Title>
                             <Components.Paragraph>
-                                Enter Your personal details and start journey with us
+                        Entrez vos données personnelles et commencez votre voyage avec nous
                             </Components.Paragraph>
                             <button type='submit' className='btnRight' onClick={() => toggle(false)}>
-                                Sign Up
+                                S'inscrire
                             </button>
                         </Components.RightOverlayPanel>
                     </Components.Overlay>

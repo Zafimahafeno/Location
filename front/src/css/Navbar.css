@@ -1,0 +1,133 @@
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #1a1a1a;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header .logo img {
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .link .linkBtn {
+    margin-left: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #f1e9e9;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    transition: color 0.3s ease;
+  }
+  
+  .linkBtn:hover {
+    color: #ff4c61;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* BUTTON SIGN-IN */
+  .button-signin {
+    padding: 8px 16px;
+    background: linear-gradient(45deg, #ff4c61, #ff7a89);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  
+  .button-signin:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 76, 97, 0.5);
+  }
+  
+  .button-signin:active {
+    transform: scale(1);
+    box-shadow: 0 3px 8px rgba(255, 76, 97, 0.5);
+  }
+  
+  /* SEARCH */
+  .search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    border-radius: 20px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .search.focused {
+    box-shadow: 0 0 10px rgba(255, 76, 97, 0.8);
+  }
+  
+  .search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px;
+    color: #333;
+  }
+  
+  .search svg {
+    color: #333;
+    margin-left: 5px;
+  }
+  
+  /* MENU BURGER */
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* RESPONSIVE STYLES */
+  @media (max-width: 768px) {
+    .link {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 15px;
+      z-index: 999;
+    }
+  
+    .link.menu-open {
+      display: flex;
+    }
+  
+    .icons {
+      display: none;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  }
+  

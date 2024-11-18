@@ -1,43 +1,107 @@
 .dashboard {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.stat-card {
+  width: 30%;
+  background: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 14px;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: card-hover 0.3s ease-out; /* Animation appliquée à la carte */
+}
+
+/* Animation pour la carte au survol */
+@keyframes card-hover {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.stat-card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+  /* position: relative; */
+margin-left: 12px; 
   
-  .stat-card1 {
-    width: 25%;
-    height: 25%;
-    background: linear-gradient(0.45turn, #065eb1, rgb(9, 84, 170), #138df1);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  .stat-card2 {
-    width: 25%;
-    height: 25%;
-    background: linear-gradient(0.25turn, #09e639, rgb(73, 190, 43), #05e03c);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  .stat-card3 {
-    width: 25%;
-    height: 25%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background: linear-gradient(0.45turn, #ab50cf, rgb(198, 33, 204), #5d0aa1);
-    
-    
-  }
-  .stat-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .stat-card p {
-    font-size: 2rem;
-    color: #333;
-  }
- 
-  
+}
+.stat-iconp{
+  font-size: 2rem;
+  position: absolute;  /* Positionnement absolu pour l'icône */
+  bottom: 10px;  /* Espace par rapport au bas de la carte */
+  right: 10px;  /* Espace par rapport à la droite de la carte */
+ padding: 2%;
+background: rgba(214, 196, 196, 0.01);
+border-radius: 5px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.3px);
+-webkit-backdrop-filter: blur(3.3px);
+border: 1px solid rgba(3, 36, 44, 0.13);
+}
+
+/* Styles des cartes */
+.stat-card1 {
+  background: linear-gradient(0.45turn, #065eb1, rgb(9, 84, 170), #138df1);
+}
+
+.stat-card2 {
+  background: linear-gradient(0.25turn, #09e639, rgb(73, 190, 43), #05e03c);
+}
+
+.stat-card3 {
+  background: linear-gradient(0.45turn, #ab50cf, rgb(198, 33, 204), #5d0aa1);
+}
+
+/* Titres et paragraphes */
+.stat-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: #eaeaea;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.stat-card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
+
+
+
+.stat-icon-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border-radius: 8px; /* Slightly rounded corners */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-icon {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.options-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}

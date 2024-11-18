@@ -5,12 +5,16 @@ import axios from 'axios';
 import { Url } from '../services/Api';
 import AlertMessage from './alertMessage';
 
-const categories = [
-  { id: 2, title: 'ordinateur' },
-  { id: 3, title: 'souris' },
-  { id: 4, title: 'souris' },
-  { id: 5, title: 'camera' },
-  { id: 6, title: 'telephone' }
+const typeproduit = [
+  { id: 1, title: 'Ordinateur' },
+  { id: 2, title: 'Imprimante' },
+  { id: 3, title: 'Projecteur' },
+  { id: 4, title: 'Scanner' },
+  { id: 5, title: 'Photocopieuse' },
+  // { id: 7, title: 'telephone' } ,
+  // { id: 8, title: 'Projecteur' } ,
+
+
 ];
 
 function SimpleDialog(props) {
@@ -19,18 +23,17 @@ function SimpleDialog(props) {
   const handleClose = () => {
     onClose();
   };
-  const [Nom_produit, setNom] = useState('');
-  const [Description, setDescription] = useState('');
-  const [Prix, setPrix] = useState('');
-  const [Marque, setMarque] = useState('');
-  const [Quantite_stock, setQuantiteStock] = useState('');
-  const [Modele, setModele] = useState('');
-  const [id_categorie, setIdCategorie] = useState('');
+  const [nom_produit, setNom] = useState('');
+  const [detail, setDescription] = useState('');
+  const [prix, setPrix] = useState('');
+  const [marque, setMarque] = useState('');
+  const [quantite_stock, setQuantiteStock] = useState('');
+  const [ID_type, setIdCategorie] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
   const handleClear = () => {
     setNom(''); setDescription('');
-    setPrix(''); setModele('');
+    setPrix(''); 
     setMarque(''); setQuantiteStock('');
     setIdCategorie(2); imageFile(null);
   }
@@ -48,13 +51,12 @@ function SimpleDialog(props) {
 
   const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append('Nom_produit', Nom_produit);
-    formData.append('Detail', Description);
-    formData.append('Prix', Prix);
-    formData.append('Modele', Modele);
-    formData.append('Marque', Marque);
-    formData.append('Quantite_stock', Quantite_stock);
-    formData.append('id_categorie', id_categorie);
+    formData.append('nom_produit', nom_produit);
+    formData.append('detail', detail);
+    formData.append('Prix', prix);
+    formData.append('marque', marque);
+    formData.append('quantite_stock', quantite_stock);
+    formData.append('ID_type', ID_type);
     formData.append('photo', imageFile);
 
     try {
@@ -74,16 +76,15 @@ function SimpleDialog(props) {
   return (
     <Dialog onClose={handleClose} open={open} maxWidth='sm'>
       <AlertMessage open={alertOpen} message={alertMsg} onClose={handleCloseAlert} />
-      <input type="text" name={Nom_produit} value={Nom_produit} onChange={text => setNom(text.target.value)} placeholder='Nom' />
-      <input type="text" name={Marque} value={Marque} onChange={text => setMarque(text.target.value)} placeholder='marque' />
-      <input type="text" name={Modele} value={Modele} onChange={text => setModele(text.target.value)} placeholder='model' />
-      <input type="text" name={Description} value={Description} onChange={text => setDescription(text.target.value)} placeholder='Desc' />
-      <select name={id_categorie} value={id_categorie} onChange={text => setIdCategorie(text.target.value)}>
-        {categories.map((item) => <option key={item.id} value={item.id}>{item.title}</option>
+      <input type="text" name={nom_produit} value={nom_produit} onChange={text => setNom(text.target.value)} placeholder='Nom' />
+      <input type="text" name={marque} value={marque} onChange={text => setMarque(text.target.value)} placeholder='Marque' />
+      <input type="text" name={detail} value={detail} onChange={text => setDescription(text.target.value)} placeholder='Description' />
+      <select name={ID_type} value={ID_type} onChange={text => setIdCategorie(text.target.value)}>
+        {typeproduit.map((item) => <option key={item.id} value={item.id}>{item.title}</option>
         )}
       </select>
-      <input type="text" name={Quantite_stock} value={Quantite_stock} onChange={text => setQuantiteStock(text.target.value)} placeholder='quantite' />
-      <input type="text" name={Prix} value={Prix} onChange={text => setPrix(text.target.value)} placeholder='prix' />
+      <input type="text" name={quantite_stock} value={quantite_stock} onChange={text => setQuantiteStock(text.target.value)} placeholder='quantite' />
+      <input type="text" name={prix} value={prix} onChange={text => setPrix(text.target.value)} placeholder='prix' />
       <input type="file" value={imageFile} onChange={handleFileChange} />
       <button onClick={handleSubmit}>Save</button>
     </Dialog>

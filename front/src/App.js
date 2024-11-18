@@ -25,8 +25,10 @@ import Profil from './pages/Profil';
 import Login from "./pages/Login";
 import SignIn from "./pages/SignIn";
 import AuthForm from "./components/AuthForm";
-import Packs from "./pages/Packs";
+import Pack from "./pages/Pack";
 import Dashboard from "./pages/admin/Dashboard";
+import PackAdm from "./pages/admin/PackAdm";
+
 
 
 
@@ -127,15 +129,19 @@ function App() {
       Component: SignIn,
     },
     {
-      path: "/packs",
-      Component: Packs,
+      path: "/pack",
+      Component: Pack,
     },
 
     {
       path: "/admin/dashboard",
       Component: Dashboard,
     },
-    
+
+    {
+      path: "/admin/packAdm", 
+      Component: PackAdm,
+    },
     
     
       

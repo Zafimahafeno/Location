@@ -1,45 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { FaCartShopping } from "react-icons/fa6";
-import { NavLink, useLocation } from 'react-router-dom';
+import { FaShoppingBag, FaUserCircle, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { MdNotificationsActive } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
+import { NavLink, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-// Assuming getUserConnect fetches the connected user
-import { getUserConnect } from '../services/Api'; 
+import { getUserConnect } from '../services/Api';
+import '../css/Navbar.css';
 
 const logo = require("../assets/logo.jfif");
 
-
-const Header = ({
-  searchInput,
-  setSearch,
-  search,
-}) => {
-  
+const Header = ({ searchInput, setSearch, search }) => {
   const location = useLocation();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  // const navigate = useNavigate();
+  const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [panier, setPanier] = useState(0);
-  const [id, setId] = useState(null);
+  const [user, setUser] = useState(null);
 
-
-  
   useEffect(() => {
     const fetchUser = async () => {
       const userData = await getUserConnect();
-      setId(userData.idUser);  // Set the id from user data
+      setUser(userData);
     };
     fetchUser();
   }, []);
 
-  const { isLoading, error, data } = useQuery('products', async () => {
-    const response = await fetch(`http://localhost:4000/panierall/${id}`);
+  const { isLoading, error, data } = useQuery(['products', user], async () => {
+    const response = await fetch(`http://localhost:4000/panierall/${user?.ID_client}`);
     if (!response.ok) {
       throw new Error('Erreur lors de la récupération des produits');
     }
     return response.json();
-  }, { enabled: !!id }); // Only run query if id exists
+  }, { enabled: !!user }); 
 
   useEffect(() => {
     if (data) {
@@ -47,11 +39,12 @@ const Header = ({
     }
   }, [data]);
 
-  const handleMouseEnter = () => {
-    setIsDropdownVisible(true);
-  };
-  const handleMouseLeave = () => {
-    setIsDropdownVisible(false);
+  const handleMouseEnter = () => setIsDropdownVisible(true);
+  const handleMouseLeave = () => setIsDropdownVisible(false);
+  const toggleUserMenu = () => setIsUserMenuVisible(!isUserMenuVisible);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleLogout = () => {
+    setUser(null);
   };
 
   if (isLoading) return 'Chargement en cours...';
@@ -59,58 +52,75 @@ const Header = ({
 
   return (
     <div className={`header ${location.pathname !== '/' && 'blur'}`}>
+      {/* Logo */}
       <div className="logo">
         <img src={logo} alt="logo" />
       </div>
-      <div className="link">
-      <NavLink to='/' className='linkBtn'>Accueil</NavLink>
-        {/* Intégration du bouton Shop avec menu déroulant */}
-        <div 
-          className="dropdown" 
-          onMouseEnter={handleMouseEnter} 
-          onMouseLeave={handleMouseLeave}
-        
-        >
-      
+
+      {/* Menu Burger */}
+      <div className="menu-toggle" onClick={toggleMenu}>
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* Liens de navigation */}
+      <div className={`link ${isMenuOpen ? 'menu-open' : ''}`}>
+        <NavLink to='/' className='linkBtn'>Accueil</NavLink>
+        <div className="dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <NavLink to='/shop' className='linkBtn'>Nos offres</NavLink>
-           {/* Menu déroulant */}
-           {isDropdownVisible && (
-            <div className="dropdown-menu">
+          {isDropdownVisible && (
+            <div className="dropdown-menu show">
               <NavLink to='/shop' className="dropdown-item">Nos Produits</NavLink>
-              <NavLink to='/packs' className="dropdown-item">Nos Packs Produits</NavLink>
+              <NavLink to='/pack' className="dropdown-item">Nos Packs Produits</NavLink>
             </div>
           )}
         </div>
         <NavLink to='/Contact' className='linkBtn'>Contact</NavLink>
       </div>
-      < div className="icons">
-      <NavLink to='/Login' className='linksignin'>Se connecter</NavLink>
-      
-      {searchInput && (
-  <div className={`search black ${isSearchFocused ? 'focused' : ''}`}>
-    <input
-      placeholder='Search ....'
-      onFocus={() => setIsSearchFocused(true)}
-      onBlur={() => setIsSearchFocused(false)}
-      onChange={text => setSearch(text.target.value)}
-      value={search}
-    />
-    <FaSearch />
-  </div>
-)}
+
+      {/* Icônes */}
+      <div className="icons">
+        {searchInput && (
+          <div className={`search black ${isSearchFocused ? 'focused' : ''}`}>
+            <input
+              placeholder='Search ....'
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              onChange={e => setSearch(e.target.value)}
+              value={search}
+            />
+            <FaSearch />
+          </div>
+        )}
 
         <NavLink to='/panier' className={`icon ${isSearchFocused ? 'hidden' : ''}`}>
           {panier ? <div className="dot">{panier}</div> : null}
-          <FaCartShopping />
+          <FaShoppingBag />
         </NavLink>
-        <div className={`icone ${isSearchFocused ? 'hidden' : ''}`}>
-          <NavLink to='/Notification' className="icon">
-            <div className="dot">1</div>
-            <MdNotificationsActive />
-          </NavLink>
-        </div>
-      </div> 
-    </div>  
+
+        {user && (
+          <div className={`icone ${isSearchFocused ? 'hidden' : ''}`}>
+            <NavLink to='/Notification' className="icon">
+              <div className="dot">1</div>
+              <MdNotificationsActive />
+            </NavLink>
+          </div>
+        )}
+
+        {user ? (
+          <div className="user-menu" onMouseEnter={toggleUserMenu} onMouseLeave={toggleUserMenu}>
+            <FaUserCircle size={24} />
+            {isUserMenuVisible && (
+              <div className="user-dropdown">
+                <span>Bienvenue, {user.username}</span>
+                <button onClick={handleLogout}>Se déconnecter</button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <NavLink to='/Login' className='button-signin'>Se connecter</NavLink>
+        )}
+      </div>
+    </div>
   );
 };
 

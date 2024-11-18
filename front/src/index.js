@@ -9,8 +9,12 @@ import './css/layout.css';
 import './css/login.css';
 import './css/table.css';
 import "./css/modal.css";
-import "./css/packs.css";
+import "./css/pack.css";
 import "./css/dashboard.css";
+import "./css/addPack.css";
+import "./css/headerAdmin.css";
+
+
 
 
 

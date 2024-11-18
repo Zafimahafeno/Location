@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getAll } from '../../services/Api'; // Assurez-vous que l'API est correctement définie
+import { getAll } from '../../services/Api'; 
 import LayoutAdmin from '../../components/LayoutAdmin'
+
+import { People, Category, ShoppingCart } from '@mui/icons-material';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -21,26 +23,47 @@ const Dashboard = () => {
 
     fetchStats();
   }, []);
-  
+
   return (
     <LayoutAdmin>
-    
-    <div className="dashboard">
-      <div className="stat-card1 ">
-        <h3>Total d'utilisateurs</h3> 
-        <p>{stats.totalUtilisateurs} </p>
-        </div>
-      <div className="stat-card2 ">
-      <h3>Total produits</h3> 
-      <p> {stats.totalProduits} </p>
-      </div>
-      <div className="stat-card3 ">
-      <h3> Total commandes</h3>
-      <p> {stats.totalCommandes} </p>
-      </div>
+      <div className="dashboard">
+        {/* <div className="stat-card stat-card1">
+        <div class="stat-icon-wrapper">
+        <i class="style-icon"> <People  /> </i>
+          <h3>Total d'utilisateurs</h3>
+          <p>{stats.totalUtilisateurs}</p>
+          <div class="options-icon">⋮</div>
+          </div>
+        </div> */}
+        <div class="stat-card stat-card1">
+    <div class="stat-icon-wrapper">
+      <i class="stat-icon"><People  /></i> 
     </div>
+    <h3>Total Utilisateurs</h3>
+    <p>{stats.totalUtilisateurs}</p>
+    {/* <p>Last Month</p> */}
+    <div class="options-icon">⋮</div>
+  </div>
+
+        < div className="stat-card stat-card2">
+        <div class="stat-icon-wrapper">
+        <i class="stat-icon"> <Category/> </i> 
+         </div>
+          <h3>Total produits</h3>  
+          <p>{stats.totalProduits}</p>
+          <div class="options-icon">⋮</div>
+          </div>
+        
+        < div className="stat-card stat-card3">
+        <div class="stat-icon-wrapper">
+        <i class="stat-icon"> <ShoppingCart/> </i> 
+        </div>  
+          <h3>Total Location</h3>
+          <p>{stats.totalCommandes}</p>
+          <div class="options-icon">⋮</div>
+          </div>
+      </div>
     </LayoutAdmin>
-       
   );
 };
 

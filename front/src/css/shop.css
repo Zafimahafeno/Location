@@ -1,5 +1,27 @@
-.card {
-    height: 400px;
+
+/* .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding-inline: 10px;
+    overflow: hidden;
+    gap: calc((100% - 1180px)/3);
+  } */
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Centrer les cartes */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+
+/* .card {
+    height: 520px;
     width: 22%;
     margin-block: 10px;
     display: flex;
@@ -8,13 +30,49 @@
     box-shadow: #00000059 0px 5px 15px;
     border-radius: 10px;
     position: relative;
+    margin-top: 5%;
+   
+} */
+
+/* .card {
+    width: 260px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+} */
+
+.card {
+    width: 260px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
 }
+
+/* .card:hover {
+    box-shadow: #023c53 0px 5px 15px;
+} */
+
 
 .card:hover {
-    box-shadow: #ce0202 0px 5px 15px;
+    transform: translateY(-10px); /* Animation au survol */
+    box-shadow: 0 12px 24px rgba(67, 85, 240, 0.973);
 }
 
-.card img {
+/* .card img {
     height: 50%;
     width: 96%;
     object-fit: cover;
@@ -22,23 +80,65 @@
     margin-top: 6px;
     margin-left: 2%;
     box-shadow: #00000029 0px 1px 4px;
+} */
+
+.card .nbQuante {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px;
 }
 
-.card .contain {
+/* .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 10px;
+} */
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* .card .contain {
     height: 50%;
     width: 100%;
     padding-inline: 10px;
-}
+} */
 
-.card button {
+/* .card button {
     position: absolute;
     bottom: 10px;
     width: 80%;
     left: 10%;
     font-size: 16px !important;
+    background-color: #1add8c;
+    margin-top: 60%;
+} */
+.card button {
+    margin-top: 10%; /* Le bouton reste en bas */
+    /* background-color: #007bff; */
+    background-color: #1add8c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.card .marque {
+.card button:hover{
+    background-color: #04633b;
+    color: aliceblue !important;
+     
+}
+
+/* .card .marque {
     position: absolute;
     right: 12px;
     top: 10px;
@@ -48,66 +148,141 @@
     padding-block: 6px;
     border-radius: 10px;
     font-weight: 700;
+} */
+.card .marque {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: rgb(194, 197, 20);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
-
-.card .nom {
+/* .card .nom {
     font-size: 25px;
     font-weight: 800;
+} */
+.card .nom {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
 }
-
-.card .detail {
+/* .card .detail {
     font-size: small;
     font-weight: 600;
     width: 96%;
+} */
+.card .detail {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+    text-align: center;
 }
 
-.card .prix {
+
+/* .card .prix {
     font-size: 20px;
     font-weight: 800;
+} */
+.card .prix {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: 700;
+    margin-top: 10px;
 }
 
-.card .footer {
+/* .card .footer {
     width: 94%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-top: 5px;
-}
+} */
 
-.no-products{
+/* .no-products{
     width: 100%;
     margin-top: 50px;
     text-align: center;
     font-size: large;
     font-weight: bold;
-}
+} */
 
-.card .quantite {
+/* .card .quantite {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
+} */
+.card .quantite {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-.card .btn {
-    width: 32px;
-    height: 32px;
+/* .card .btn {
+    width: 2%;
+    height: 2%;
     cursor: pointer;
     border-radius: 10px;
-    background-color: #F7BA00;
+    background-color: #59d1da;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 500;
     font-size: larger;
     cursor: pointer;
+} */
+.card .btn {
+    /* background-color: #007bff; */
+    background-color: #59d1da;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover{
-    background-color: #000000;
-    color: #F7BA00;
+    background-color: #0488b1;
+
 }
  
-  
+
+.form-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-date label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+.form-date input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+.form-date input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+                 
